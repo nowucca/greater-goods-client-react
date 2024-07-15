@@ -1,0 +1,63 @@
+:root {
+  --product-box-background: hsl(0, 0%, 100%);
+  --ci-2: hsl(0, 0%, 59%);
+  --ci-3: hsl(64, 39%, 14%);
+  --product-box-details: hsl(245, 100%, 51%);
+  --point-badge-background: hsl(89, 87%, 78%);
+  --point-badge-foreground: hsl(36, 33%, 40%);
+}
+
+.product-box {
+  background: var(--product-box-background);
+  border: 1px solid var(--ci-2);
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1px;
+}
+
+.product-image {
+  width: 200px;
+  height: 200px;
+  padding-top: 5px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 100px;
+  font-size: 16px;
+  color: var(--product-box-details);
+}
+
+.product-cost {
+  display: block;
+  position: absolute;
+  margin-left: 240px;
+  margin-top: 215px;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.product-price {
+  font-size: 13px;
+  color: var(--ci-3);
+}
+
+.gg-points-badge {
+  height: 30px;
+  width: 30px;
+  background-color: var(--point-badge-background);
+  border-radius: 50%;
+  border: 1px solid var(--ci-2);
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--point-badge-foreground);
+  text-align: center;
+  margin-top: 20px;
+}
