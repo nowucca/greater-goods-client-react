@@ -9,7 +9,7 @@ interface CategoryContextType {
   setLastSelectedCategoryName: (name: string) => void;
 }
 
-const DEFAULT_CATEGORY_NAME = "Coding";
+const DEFAULT_CATEGORY_NAME = "Bakery";
 
 // Create the context with default values
 const CategoryContext = createContext<CategoryContextType>({
