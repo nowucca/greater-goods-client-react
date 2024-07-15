@@ -1,0 +1,41 @@
+#header {
+  font-size: 16px;
+  background: var(--background-1);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#left-header {
+  width: 25rem;
+  height: 6.25rem;
+  display: flex;
+  align-items: center;
+}
+
+#logo img {
+  width: 3.75em;
+  margin-left: 2.5em;
+  margin-right: 0.625em;
+}
+
+#logo-text span {
+  color: var(--ci-3);
+  font-size: 24px;
+}
+
+#right-header {
+  width: 25em;
+  display: flex;
+  align-items: center;
+}
+
+#avatar-area {
+  margin-right: 1.25em;
+}
+
+#account-area {
+  font-size: 16px;
+  color: var(--ci-3);
+}
