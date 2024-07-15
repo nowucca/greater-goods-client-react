@@ -11,7 +11,9 @@ export const fetchCategories = async (): Promise<CategoryItem[]> => {
   return response.data as CategoryItem[];
 };
 
-export const fetchProducts = async (categoryName: string) => {
+export const fetchProducts = async (
+  categoryName: string
+): Promise<ProductItem[]> => {
   const response = await axios.get(
     `${apiUrl}/products/category?name=${categoryName}`
   );
