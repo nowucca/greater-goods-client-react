@@ -1,10 +1,9 @@
-import React from 'react';
-import HomeHeroBox from '../components/HomeHeroBox';
-import './HomePage.css';
-import '../App.css';
+import React from "react";
+import HomeHeroBox from "../components/HomeHeroBox";
+import "./HomePage.css";
+import "../App.css";
 
 const HomePage: React.FC = () => {
-
   // TODO: You can add equivalent logic for beforeRouteUpdate if needed, for example using useEffect with react-router
 
   return (
@@ -14,7 +13,6 @@ const HomePage: React.FC = () => {
         <h3>Find quality fresh groceries and help your community thrive.</h3>
       </div>
       <section className="hero-boxes">
-        <i className="fas fa-shopping-basket"></i>
         <HomeHeroBox
           icon="fas fa-shopping-basket"
           title="Shop"
