@@ -10,6 +10,7 @@ import HeaderNavbar from "./components/HeaderNavBar";
 import CategoryPage from "./pages/CategoryPage";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
+import ConfirmationPage from "./pages/ConfirmationPage";
 
 export default function App() {
   const showNavigationBar = useNavigationBar();
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/category/:categoryName" element={<CategoryPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/confirmation" element={<ConfirmationPage />} />
         <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>
       <AppFooter />

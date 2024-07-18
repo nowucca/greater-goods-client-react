@@ -10,6 +10,9 @@ import { asDollarsAndCents } from "../utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import "./CheckoutPage.css";
+import { OrderDetails } from "../types";
+import { placeOrder } from "../services";
+import { useOrderDetails } from "../context/OrderDetailsContext";
 
 interface FormValues {
   name: string;
@@ -54,8 +57,9 @@ const validationSchema = object({
 });
 
 const CheckoutPage: React.FC = () => {
-  const { cart } = useCart();
+  const { cart, dispatch: cartStore } = useCart();
   const navigate = useNavigate();
+  const { dispatch: orderDetailsStore } = useOrderDetails();
   const [checkoutStatus, setCheckoutStatus] = useState<string>("");
 
   const resetOrder = (resetForm: () => void) => {
@@ -77,11 +81,20 @@ const CheckoutPage: React.FC = () => {
       setCheckoutStatus("ERROR");
       actions.setSubmitting(false);
     } else {
+      orderDetailsStore({ type: "CLEAR" });
       setCheckoutStatus("PENDING");
-      await sleep(1000);
-      setCheckoutStatus("OK");
-      await sleep(1000);
-      navigate("/confirmation");
+      placeOrder(cart, values)
+        .then((orderDetails) => {
+          console.log("Order details", orderDetails);
+          cartStore({ type: "CLEAR_CART" });
+          orderDetailsStore({ type: "UPDATE", orderDetails: orderDetails });
+          setCheckoutStatus("OK");
+          navigate("/confirmation");
+        })
+        .catch((error) => {
+          setCheckoutStatus("SERVER_ERROR");
+          console.log("Error placing order", error);
+        });
     }
   };
 

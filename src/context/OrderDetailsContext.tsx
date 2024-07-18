@@ -54,6 +54,7 @@ export const OrderDetailsProvider = ({ children }: { children: ReactNode }) => {
   const [orderDetails, dispatch] = useReducer(reducer, localOrderDetails);
 
   useEffect(() => {
+    console.log("OrderDetailsProvider: orderDetails updated to", orderDetails);
     setLocalOrderDetails(orderDetails);
   }, [orderDetails, setLocalOrderDetails]);
 
@@ -65,7 +66,7 @@ export const OrderDetailsProvider = ({ children }: { children: ReactNode }) => {
 };
 
 // Create a custom hook for easy access to the context
-export const useOrderDetailsContext = () => {
+export const useOrderDetails = () => {
   const context = useContext(OrderDetailsContext);
   if (!context) {
     throw new Error(
