@@ -58,6 +58,12 @@ const CheckoutPage: React.FC = () => {
   const navigate = useNavigate();
   const [checkoutStatus, setCheckoutStatus] = useState<string>("");
 
+  const resetOrder = (resetForm: () => void) => {
+    console.log("Reset order");
+    resetForm();
+    setCheckoutStatus("");
+  };
+
   const handleSubmit = async (
     values: FormValues,
     actions: FormikHelpers<FormValues>
@@ -80,65 +86,91 @@ const CheckoutPage: React.FC = () => {
   };
 
   return (
-    <div className="checkout-page hero-area">
+    <div id="checkout" className="checkout-page hero-area">
       {cart.empty && (
-        <h2>
-          Your cart is empty. Please add an item to your cart to checkout.
-        </h2>
+        <section id="checkout-empty">
+          <p>
+            Your cart is empty. Please add an item to your cart to checkout.
+          </p>
+        </section>
       )}
 
       {!cart.empty && (
-        <section className="checkout-page-body">
-          <section className="checkout-page-form-and-details">
-            <Formik
-              initialValues={initialValues}
-              validationSchema={validationSchema}
-              onSubmit={handleSubmit}
-              validateOnChange={false}
-              validateOnBlur={true}
-            >
-              {({ isSubmitting }) => (
-                <Form>
-                  <TextInput label="Name" name="name" />
-                  <TextInput label="Address" name="address" />
-                  <TextInput label="Phone" name="phone" />
-                  <TextInput label="Email" name="email" type="email" />
-                  <TextInput label="Credit Card" name="ccNumber" />
-                  <button
-                    type="submit"
-                    className="cta-button"
-                    disabled={isSubmitting || checkoutStatus === "PENDING"}
-                  >
-                    {isSubmitting ? (
-                      <FontAwesomeIcon icon={faSpinner} spin />
-                    ) : (
-                      "Complete Purchase"
-                    )}
-                  </button>
-                </Form>
-              )}
-            </Formik>
-            <section className="checkout-details">
-              Your credit card will be charged{" "}
-              <strong>
-                {asDollarsAndCents(cart.subtotal + cart.surcharge)}
-              </strong>
-              <br />(<strong>{asDollarsAndCents(cart.subtotal)}</strong> +{" "}
-              <strong>{asDollarsAndCents(cart.surcharge)}</strong> shipping)
-            </section>
-          </section>
+        <section id="checkout-main" className="checkout-page-body">
+          <p style={{ fontWeight: "bold" }}>Checkout</p>
+          <div id="checkout-form-and-info">
+            <div id="checkout-form-box">
+              <Formik
+                initialValues={initialValues}
+                validationSchema={validationSchema}
+                onSubmit={handleSubmit}
+                validateOnChange={false}
+                validateOnBlur={true}
+              >
+                {({ isSubmitting, resetForm }) => (
+                  <Form id="checkout-form">
+                    <TextInput label="Name" name="name" />
+                    <TextInput label="Address" name="address" />
+                    <TextInput label="Phone" name="phone" />
+                    <TextInput label="Email" name="email" type="email" />
+                    <TextInput label="Credit Card" name="ccNumber" />
+                    <div id="checkout-button-area">
+                      <button
+                        id="checkout-button"
+                        type="submit"
+                        className="emphasized-2x-button"
+                        disabled={isSubmitting || checkoutStatus === "PENDING"}
+                      >
+                        {isSubmitting ? (
+                          <FontAwesomeIcon icon={faSpinner} spin />
+                        ) : (
+                          "Complete Purchase"
+                        )}
+                      </button>
+                      <button
+                        id="reset-button"
+                        className="normal-2x-button"
+                        onClick={() => resetOrder(resetForm)}
+                        type="reset"
+                      >
+                        Reset Form
+                      </button>
+                    </div>
+                  </Form>
+                )}
+              </Formik>
+            </div>
+            <div id="checkout-info">
+              <span id="checkout-info-text">
+                Your credit card will be charged{" "}
+                <strong>
+                  {asDollarsAndCents(cart.subtotal + cart.surcharge)}
+                </strong>
+                <br />(<strong>{asDollarsAndCents(cart.subtotal)}</strong> +{" "}
+                <strong>{asDollarsAndCents(cart.surcharge)}</strong> shipping)
+              </span>
+            </div>
+          </div>
 
           {checkoutStatus !== "" && (
-            <section className="checkoutStatusBox">
+            <div v-if="form.checkoutStatus !== ''" className="form-text-holder">
               {checkoutStatus === "ERROR" && (
-                <div>Error: Please fix the problems above and try again.</div>
+                <div className="form-text form-error-text">
+                  Error: Please fix the problems above and try again.
+                </div>
               )}
-              {checkoutStatus === "PENDING" && <div>Processing...</div>}
-              {checkoutStatus === "OK" && <div>Order placed...</div>}
+              {checkoutStatus === "PENDING" && (
+                <div className="form-text form-pending-text">Processing...</div>
+              )}
+              {checkoutStatus === "OK" && (
+                <div className="form-text form-ok-text">Order placed...</div>
+              )}
               {checkoutStatus === "SERVER_ERROR" && (
-                <div>An unexpected error occurred, please try again.</div>
+                <div className="form-text form-error-text">
+                  An unexpected error occurred, please try again.
+                </div>
               )}
-            </section>
+            </div>
           )}
         </section>
       )}

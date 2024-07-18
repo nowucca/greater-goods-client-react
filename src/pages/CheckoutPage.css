@@ -1,34 +1,129 @@
-.checkout-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* Define CSS variables to replace SCSS variables if needed */
+:root {
+  --checkout-button-border: #000; /* Define this value based on your theme */
 }
 
-.checkout-page-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.checkout-element {
+  margin-top: 15px;
+  margin-right: 5px;
+  line-height: 32px;
 }
 
-.checkout-page-form-and-details {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.checkout-details {
-  margin-top: 20px;
-}
-
-.cta-button {
-  margin-top: 20px;
-}
-
-.checkoutStatusBox {
-  margin-top: 20px;
+.checkout-paragraph {
+  margin-top: 30px;
+  margin-bottom: 30px;
   text-align: center;
 }
 
-.hero-area {
-  padding: 20px;
+#checkout {
+  #checkout-empty {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  #checkout-empty input,
+  #checkout-empty select,
+  #checkout-empty button {
+    margin-top: 15px;
+    margin-right: 5px;
+    line-height: 32px;
+  }
+
+  #checkout-empty p {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  #checkout-main input,
+  #checkout-main select,
+  #checkout-main button {
+    margin-top: 15px;
+    margin-right: 5px;
+    line-height: 32px;
+  }
+
+  #checkout-main p {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  #checkout-form-and-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  #checkout-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  #checkout-form .error {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-around;
+    font-size: 16px;
+    color: red;
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+  }
+
+  #checkout-form .form-element {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  #checkout-form .form-element label {
+    display: inline-block;
+    text-align: right;
+    margin-right: 0.625em;
+  }
+
+  #checkout-button-area {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-top: 1.9em;
+  }
+
+  #checkout-button {
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid var(--checkout-button-border);
+  }
+
+  #checkout-info {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .form-text-holder {
+    margin: 1.9em;
+    border: 1px solid black;
+    padding: 0.3em;
+  }
+
+  .form-text {
+    text-align: center;
+  }
+
+  .form-error-text {
+    color: red;
+  }
+
+  .form-pending-text {
+    color: orange;
+  }
+
+  .form-ok-text {
+    color: blue;
+  }
 }
