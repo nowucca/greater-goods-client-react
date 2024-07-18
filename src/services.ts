@@ -1,5 +1,11 @@
-import axios from "axios";
-import { ProductItem, CategoryItem } from "./types";
+import axios, { AxiosResponse } from "axios";
+import {
+  ProductItem,
+  CategoryItem,
+  CustomerForm,
+  OrderDetails,
+  ShoppingCart,
+} from "./types";
 
 const apiUrl =
   `${location.protocol}//${location.hostname}:` +
@@ -19,3 +25,28 @@ export const fetchProducts = async (
   );
   return response.data as ProductItem[];
 };
+
+export async function placeOrder(
+  cart: ShoppingCart,
+  customerForm: CustomerForm
+): Promise<OrderDetails> {
+  const order = { cart: cart, customerForm: customerForm };
+  console.log(JSON.stringify(order));
+  try {
+    const response: AxiosResponse<OrderDetails> = await axios.post(
+      `${apiUrl}/orders`,
+      order,
+      {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    // Handle unexpected errors
+    throw new Error("An unexpected error occurred");
+  }
+}

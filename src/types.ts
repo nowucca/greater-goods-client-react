@@ -118,11 +118,11 @@ export class ShoppingCart {
   }
 
   /**
-   * Adds a single specified book to the shopping cart.
+   * Adds a single specified item to the shopping cart.
    */
   add(product: ProductItem) {
     const existingItem = this.itemArray.find(
-      (item) => item.product.productId == product.productId,
+      (item) => item.product.productId == product.productId
     );
     if (!existingItem) {
       const newItem = new ShoppingCartItem(product);
@@ -134,29 +134,30 @@ export class ShoppingCart {
   }
 
   /**
-   * Removes a single specified book to the shopping cart.
+   * Removes a single specified item to the shopping cart.
    */
   remove(product: ProductItem) {
     const existingItem = this.itemArray.find(
-      (item) => item.product.productId == product.productId,
+      (item) => item.product.productId == product.productId
     );
     if (existingItem) {
       existingItem.quantity--;
       if (existingItem.quantity == 0) {
-      this.itemArray = this.itemArray.filter(
-        (item) => item.product.productId !== product.productId);
+        this.itemArray = this.itemArray.filter(
+          (item) => item.product.productId !== product.productId
+        );
       }
     }
   }
   /**
-   * Updates the quantity of the specified book by the specified amount.
-   * If '0' is the given quantity, the book is removed from the cart.
+   * Updates the quantity of the specified item by the specified amount.
+   * If '0' is the given quantity, the item is removed from the cart.
    */
   update(product: ProductItem, quantity: number) {
     if (quantity < 0 || quantity > 99) return;
 
     const existingItemIndex = this.itemArray.findIndex(
-      (item) => item.product.productId == product.productId,
+      (item) => item.product.productId == product.productId
     );
     if (existingItemIndex !== -1) {
       if (quantity !== 0) {
