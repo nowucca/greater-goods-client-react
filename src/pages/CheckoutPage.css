@@ -1,0 +1,34 @@
+.checkout-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.checkout-page-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.checkout-page-form-and-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.checkout-details {
+  margin-top: 20px;
+}
+
+.cta-button {
+  margin-top: 20px;
+}
+
+.checkoutStatusBox {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.hero-area {
+  padding: 20px;
+}

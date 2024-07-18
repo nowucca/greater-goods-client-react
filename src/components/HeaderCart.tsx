@@ -9,7 +9,7 @@ const HeaderCart: React.FC = () => {
 
   return (
     <div id="header-cart">
-      <Link to="/cart-view">
+      <Link to="/cart">
         <img src={getSiteImageUrl("cart-icon.png")} alt="Cart Icon" />
         <div id="cart-count">{cart.numberOfItems}</div>
       </Link>
