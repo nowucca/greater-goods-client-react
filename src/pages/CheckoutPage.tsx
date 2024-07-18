@@ -10,7 +10,6 @@ import { asDollarsAndCents } from "../utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import "./CheckoutPage.css";
-import { OrderDetails } from "../types";
 import { placeOrder } from "../services";
 import { useOrderDetails } from "../context/OrderDetailsContext";
 
